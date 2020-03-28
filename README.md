@@ -16,7 +16,7 @@ Is this the right way to go about this?  Probably not, but I have other prioriti
 
 ### Variables
 
-As hinted at above, proper variable file(s) will have to be supplied for things to run at all.  The easiest thing to do is to create a `.tfvars` file with all necessary variables in it in each module directory.  The variables used for each module are as follows:
+As hinted at above, proper variable file(s) will have to be supplied for things to run at all.  The easiest thing to do is to create a `.tfvars` file with all necessary variables the root directory of this repo.  The variables used for each module are as follows:
 
 #### Digital Ocean (DO)
 
