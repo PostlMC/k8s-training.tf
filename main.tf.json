@@ -1,0 +1,10 @@
+{
+    "module": {
+        "do": {
+            "source": "./modules/do",
+            "do_region": "${var.do_region}",
+            "do_token": "${var.do_token}",
+            "do_k8s_version": "${var.do_k8s_version}"
+        }
+    }
+}

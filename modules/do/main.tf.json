@@ -1,0 +1,25 @@
+{
+    "resource": {
+        "digitalocean_kubernetes_cluster": {
+            "k8s": {
+                "name": "ckad",
+                "region": "${var.do_region}",
+                "version": "${var.do_k8s_version}",
+                "tags": [
+                    "training"
+                ],
+                "node_pool": {
+                    "name": "k8s-pool",
+                    "size": "s-1vcpu-2gb",
+                    "node_count": 3
+                }
+            }
+        },
+        "local_file": {
+            "kubeconfig": {
+                "content": "${digitalocean_kubernetes_cluster.k8s.kube_config[0].raw_config}",
+                "filename": "${path.module}/kubeconfig.yaml"
+            }
+        }
+    }
+}
