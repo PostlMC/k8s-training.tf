@@ -1,17 +1,5 @@
 {
     "variable": {
-        "do_region": {
-            "type": "string",
-            "description": "The region in which to provision resources"
-        },
-        "do_token": {
-            "type": "string",
-            "description": "Digital Ocean API access token"
-        },
-        "do_k8s_version": {
-            "type": "string",
-            "description": "Digital Ocean-specific K8s cluster version"
-        },
         "az_subscription_id": {
             "type": "string",
             "description": "The ID of Azure subscription to which the resources will be billed"
@@ -26,7 +14,7 @@
         },
         "az_region": {
             "type": "string",
-            "description": "The region in which to provision resource"
+            "description": "The region in which to provision resources"
         },
         "az_rg": {
             "type": "string",

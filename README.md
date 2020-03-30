@@ -1,6 +1,6 @@
 # K8s Training Clusters Everywhere via Terraform
 
-This is a collection of scripts created to provision K8s clusters on a collection of cloud providers as quick test spaces to practice for the [CKA][cka] and [CKAD][ckad] exams.  (Well, that, and to learn more about [Terraform][tf])  Creating clusters is easy, so the real value of the code here is quickly deleting resources.  If, like me, you've used up your free cloud credits and don't want to play games to get more, it's good to have a reliable way to clean up and insure you're not running things unnecessarily.
+This is a collection of scripts created to provision K8s clusters on a collection of cloud providers as quick three-node test clusters to practice for the [CKA][cka] and [CKAD][ckad] exams.  (Well, that, and to learn more about [Terraform][tf])  Creating clusters is easy, so the real value of the code here is quickly deleting resources.  If, like me, you've used up your free cloud credits and don't want to play games to get more, it's good to have a reliable way to clean up and insure you're not running things unnecessarily.
 
 **Note:** I'm strictly using Terraform's [latest JSON syntax][tf_json] for all plans, so code here is expected to be used with TF 0.12+.  It may work with earlier versions, or it may not.
 
@@ -12,7 +12,7 @@ Next, if you just `terraform apply` and approve, then -- assuming you've supplie
 
 Is this the right way to go about this?  Probably not, but I have other priorities above breaking things into multiple repos or a creating a repo full of separate TF plans right now, so I figure it'll do until I get around to changing things.  That said, pull request are always welcome.  😁
 
-**Another note:** This first commit only includes Digital Ocean.  GCP will come next, then Azure, then AWS.  Maybe even today.
+**Another note:** Change of plans -- Since Azure has K8s 1.17, I've stashed the work on GCP for now, and focusing on Azure first.
 
 ### Variables
 
@@ -30,7 +30,19 @@ TBD
 
 #### Microsoft Azure
 
-TBD
+_Refer to the Azure [README.md](modules/azure/README.md) for more on these first two:_
+
+- `az_sp_id` -- An Azure service prinicipal ID (GUID).
+- `az_sp_secret` -- The secret for the above Azure service principal.
+- `az_region` -- An Azure region where the cluster will be provisioned.  The list of regions is available on the [Azure docs site][az_regions].
+- `az_rg` -- An Azure resource group where all the cluster resources will be provisioned.  Will be created if it doesn't already exist, and destroyed with everything else in a `terraform deploy`, so **be careful about using an existing RG with other resources in it!**
+- `az_prefix` -- Used to name the cluster and as DNS prefix for the cluster.
+- `az_vm_size` -- Azure VM size to use for all nodes.
+- `az_k8s_version` -- The version of Kubernetes to deploy.  The best place to find valid values for a given region is via the Azure CLI: `az aks get-versions --location eastus --output table`
+
+_This last one is just a tag I use on Azure, and isn't actually required by the Terraform resource -- just by me._
+
+- `az_environment` -- (Ideally) One of Production, QA, Development, etc.  
 
 #### Amazon Web Services (AWS)
 
@@ -51,3 +63,5 @@ The plan right now is to have each module create a `kubeconfig.yaml` file in it'
 [doctl]: https://github.com/digitalocean/doctl
 [do_reg_slugs]: https://www.digitalocean.com/docs/platform/availability-matrix/
 [do_k8s_slugs]: https://slugs.do-api.dev/
+[az_regions]: https://azure.microsoft.com/en-us/global-infrastructure/services/?products=kubernetes-service
+[az_]: 

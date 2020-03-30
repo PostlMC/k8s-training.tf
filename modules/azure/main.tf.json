@@ -1,0 +1,47 @@
+{
+    "resource": {
+        "azurerm_resource_group": {
+            "rg": {
+                "name": "${var.az_rg}",
+                "location": "${var.az_region}",
+                "tags": {
+                    "Environment": "${var.az_environment}"
+                }
+            }
+        },
+        "azurerm_kubernetes_cluster": {
+            "k8s": {
+                "name": "${var.az_prefix}",
+                "location": "${var.az_region}",
+                "resource_group_name": "${var.az_rg}",
+                "dns_prefix": "${var.az_prefix}",
+                "kubernetes_version": "${var.az_k8s_version}",
+                "default_node_pool": {
+                    "name": "default",
+                    "node_count": 3,
+                    "vm_size": "${var.az_vm_size}"
+                },
+                "service_principal": {
+                    "client_id": "${var.az_sp_id}",
+                    "client_secret": "${var.az_sp_secret}"
+                },
+                "tags": {
+                    "Environment": "${var.az_environment}"
+                },
+                "depends_on": [
+                    "azurerm_resource_group.rg"
+                ]
+            }
+        },
+        "local_file": {
+            "kubeconfig": {
+                "content": "${azurerm_kubernetes_cluster.k8s.kube_config_raw}",
+                "filename": "${path.module}/kubeconfig.yaml",
+                "file_permission": "0644",
+                "depends_on": [
+                    "azurerm_kubernetes_cluster.k8s"
+                ]
+            }
+        }
+    }
+}
