@@ -18,7 +18,10 @@
         "local_file": {
             "kubeconfig": {
                 "content": "${digitalocean_kubernetes_cluster.k8s.kube_config[0].raw_config}",
-                "filename": "${path.module}/kubeconfig.yaml"
+                "filename": "${path.module}/kubeconfig.yaml",
+                "depends_on": [
+                    "digitalocean_kubernetes_cluster.k8s"
+                ]
             }
         }
     }
