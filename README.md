@@ -64,4 +64,3 @@ The plan right now is to have each module create a `kubeconfig.yaml` file in it'
 [do_reg_slugs]: https://www.digitalocean.com/docs/platform/availability-matrix/
 [do_k8s_slugs]: https://slugs.do-api.dev/
 [az_regions]: https://azure.microsoft.com/en-us/global-infrastructure/services/?products=kubernetes-service
-[az_]: 
