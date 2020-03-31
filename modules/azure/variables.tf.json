@@ -1,9 +1,5 @@
 {
     "variable": {
-        "az_subscription_id": {
-            "type": "string",
-            "description": "The ID of Azure subscription to which the resources will be billed"
-        },
         "az_sp_id": {
             "type": "string",
             "description": "The ID (GUID) of the service principal used to provision resources"
