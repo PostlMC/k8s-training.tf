@@ -10,7 +10,7 @@
             "source": "./modules/azure",
             "az_sp_id": "${var.az_sp_id}",
             "az_sp_secret": "${var.az_sp_secret}",
-            "az_location": "${var.az_region}",
+            "az_region": "${var.az_region}",
             "az_rg": "${var.az_rg}",
             "az_environment": "${var.az_environment}",
             "az_prefix": "${var.az_prefix}",
